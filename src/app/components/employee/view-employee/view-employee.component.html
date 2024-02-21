@@ -18,12 +18,12 @@
               <tr *ngFor="let employee of employeeData; let i=index">
                 <th scope="row">{{ i+1 }}</th>
                 <td>{{ employee.employeeName }}</td>
-                <td>{{ employee.department }}</td>
-                <td>{{ employee.designations }}</td>
+                <td>{{ employee.department.departmentName }}</td>
+                <td>{{ employee.designation }}</td>
                 
                 <td class="text-center">
-                  <button mat-icon-button (click)="onEmployeeEdit(employee.id)"><mat-icon class="edit-icon">create</mat-icon></button>
-                  <button mat-icon-button (click)="onEmployeeDelete(employee.id)"><mat-icon class="delete-icon">delete</mat-icon></button>
+                  <button mat-icon-button (click)="onEmployeeEdit(employee._id)"><mat-icon class="edit-icon">create</mat-icon></button>
+                  <button mat-icon-button (click)="onEmployeeDelete(employee._id)"><mat-icon class="delete-icon">delete</mat-icon></button>
                 </td>
                 
               </tr>

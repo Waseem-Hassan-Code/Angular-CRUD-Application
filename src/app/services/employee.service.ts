@@ -11,22 +11,22 @@ export class EmployeeService {
   ) { }
 
   addEmployee(data){
-    return this.http.post('http://localhost:3000/employees',data);
+    return this.http.post('http://localhost:3000/api/employees',data);
   }
 
   getEmployee(){
-    return this.http.get('http://localhost:3000/employees');
+    return this.http.get('http://localhost:3000/api/employees');
   }
 
   getEmployeeByID(id){
-    return this.http.get(`http://localhost:3000/employees/${id}`);
+    return this.http.get(`http://localhost:3000/api/employees/${id}`);
   }
 
   editEmployee(id, data){
-    return this.http.patch(`http://localhost:3000/employees/${id}`, data);
+    return this.http.put(`http://localhost:3000/api/employees/${id}`, data);
   }
 
   deleteEmployee(id){
-    return this.http.delete(`http://localhost:3000/employees/${id}`);
+    return this.http.delete(`http://localhost:3000/api/employees/${id}`);
   }
 }

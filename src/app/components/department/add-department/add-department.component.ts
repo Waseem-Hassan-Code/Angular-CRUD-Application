@@ -26,7 +26,7 @@ export class AddDepartmentComponent implements OnInit {
   ngOnInit(): void {
     this.addDepartmentForm = new FormGroup({
       departmentName: new FormControl(null, Validators.required),
-      designations : new FormArray([])
+      designation : new FormArray([])
     })
   }
 
@@ -38,11 +38,11 @@ export class AddDepartmentComponent implements OnInit {
 
   addDesignationInput(){
     let desig = new FormControl(null, Validators.required);
-    (this.addDepartmentForm.get('designations')as FormArray).push(desig);
+    (this.addDepartmentForm.get('designation')as FormArray).push(desig);
   }
 
   removeDesignationInput(index){
-    (this.addDepartmentForm.get('designations')as FormArray).removeAt(index);
+    (this.addDepartmentForm.get('designation')as FormArray).removeAt(index);
   }
 
   onAddDepartment(){
@@ -62,7 +62,8 @@ export class AddDepartmentComponent implements OnInit {
         this.departmentService.getDepartmentByName(this.addDepartmentForm.value.departmentName).subscribe(response=>{
           console.log(response);
           result = response;
-          if(result.length != 0){
+          console.log(result);
+          if(result){
             this.departmentExists = true;
             console.log(this.departmentExists);
           }else{

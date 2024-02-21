@@ -18,7 +18,7 @@ export class EditEmployeeComponent implements OnInit{
 
   bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   genders = ["Male", "Female"];
-  departmentsList = [];
+  departmentsList;
   designationList = [];
 
   employeeID;
@@ -37,7 +37,7 @@ export class EditEmployeeComponent implements OnInit{
       employeeName: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       department: new FormControl(null, Validators.required),
-      designations: new FormControl(null, Validators.required),
+      designation: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
       mobileNumber: new FormControl(null, Validators.required),
       gender: new FormControl(null, Validators.required),
@@ -59,26 +59,20 @@ export class EditEmployeeComponent implements OnInit{
         employeeName: this.employeeData.employeeName,
         address: this.employeeData.address,
         department: this.employeeData.department,
-        designations: this.employeeData.designations,
+        designation: this.employeeData.designation,
         email: this.employeeData.email,
         mobileNumber: this.employeeData.mobileNumber,
         gender: this.employeeData.gender,
         bloodGroup: this.employeeData.bloodGroup,
-      })
+      });
 
       this.onDepartmentSelect();
     })
   }
 
   getDepartments(){
-    let depts;
     this.departmentService.getDepartment().subscribe(response=>{
-      depts = response;
-      console.log(depts);
-      depts.map(dept=>{
-        // console.log(dept);
-        this.departmentsList.push(dept.departmentName);
-      })
+      this.departmentsList = response;
       console.log(this.departmentsList);
     })
 
@@ -86,14 +80,17 @@ export class EditEmployeeComponent implements OnInit{
 
   onDepartmentSelect(){
     console.log(this.editEmployeeForm.value.department);
-    this.departmentService.getDepartmentByName(this.editEmployeeForm.value.department).subscribe(response=>{
+    
+    this.departmentService.getDepartmentByID(this.editEmployeeForm.value.department).subscribe(response=>{
       console.log(response);
-      this.designationList = response[0].designations;
+      this.designationList = response['designation'];
       console.log(this.designationList);
+      this.editEmployeeForm.get('designation').setValue(this.designationList && this.designationList.length > 0 ? this.designationList[0] : '');
     })
   }
 
   updateEmployee(){
+    console.log(this.editEmployeeForm.value);
     this.employeeService.editEmployee(this.employeeID, this.editEmployeeForm.value).subscribe(response=>{
       console.log(response);
       this.toastr.success('Employee Details Updated');

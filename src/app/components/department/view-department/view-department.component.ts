@@ -51,7 +51,7 @@ export class ViewDepartmentComponent implements OnInit{
     this.departmentService.deleteDepartment(id).subscribe(response=>{
       console.log(response);
       this.toastr.error('Department Deleted');
-      
+      this.ngOnInit();
     })
   }
 }

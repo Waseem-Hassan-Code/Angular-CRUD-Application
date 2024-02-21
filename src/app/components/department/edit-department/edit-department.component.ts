@@ -31,7 +31,7 @@ export class EditDepartmentComponent implements OnInit{
   ngOnInit(): void {
     this.editDepartmentForm = new FormGroup({
       departmentName: new FormControl(null, Validators.required),
-      designations : new FormArray([])
+      designation : new FormArray([])
     });
 
     this.routeSub = this.currRoute.params.subscribe(params=>this.departmentID=params['id']);
@@ -46,16 +46,16 @@ export class EditDepartmentComponent implements OnInit{
       this.departmentData = response;
       console.log(this.departmentData);
 
-      if(this.departmentData['designations'].length>0){
+      if(this.departmentData['designation'].length>0){
         this.showDesignation=true;
-        this.departmentData.designations.forEach(element => {
+        this.departmentData.designation.forEach(element => {
           this.addDesignationInput();
         });
       }
 
       this.editDepartmentForm.patchValue({
         departmentName: this.departmentData.departmentName,
-        designations: this.departmentData.designations
+        designation: this.departmentData.designation
       })
     })
   }
@@ -67,16 +67,17 @@ export class EditDepartmentComponent implements OnInit{
 
   addDesignationInput(){
     let desig = new FormControl(null, Validators.required);
-    (this.editDepartmentForm.get('designations')as FormArray).push(desig);
+    (this.editDepartmentForm.get('designation')as FormArray).push(desig);
   }
 
   removeDesignationInput(index){
-    (this.editDepartmentForm.get('designations')as FormArray).removeAt(index);
+    (this.editDepartmentForm.get('designation')as FormArray).removeAt(index);
   }
 
   onUpdateDepartment(){
     // this.editDepartmentForm.value.id = this.departmentID;
     console.log(this.editDepartmentForm.value);
+    console.log(this.departmentID);
     this.departmentService.editDepartment(this.departmentID, this.editDepartmentForm.value).subscribe(response=>{
       console.log(response);
       this.toastr.success('Department Details Updated');

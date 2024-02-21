@@ -17,7 +17,7 @@ export class AddEmployeeComponent implements OnInit{
 
   bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   genders = ["Male", "Female"];
-  departmentsList = [];
+  departmentsList;
   designationList = [];
 
 
@@ -33,7 +33,7 @@ export class AddEmployeeComponent implements OnInit{
       employeeName: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       department: new FormControl(null, Validators.required),
-      designations: new FormControl(null, Validators.required),
+      designation: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
       mobileNumber: new FormControl(null, Validators.required),
       gender: new FormControl(null, Validators.required),
@@ -44,25 +44,21 @@ export class AddEmployeeComponent implements OnInit{
   }
 
   getDepartments(){
-    let depts;
     this.departmentService.getDepartment().subscribe(response=>{
-      depts = response;
-      console.log(depts);
-      depts.map(dept=>{
-        // console.log(dept);
-        this.departmentsList.push(dept.departmentName);
-      })
-      console.log(this.departmentsList)
+      this.departmentsList = response;
+      console.log(this.departmentsList);
     })
 
   }
 
   onDepartmentSelect(){
     console.log(this.addEmployeeForm.value.department);
-    this.departmentService.getDepartmentByName(this.addEmployeeForm.value.department).subscribe(response=>{
+    
+    this.departmentService.getDepartmentByID(this.addEmployeeForm.value.department).subscribe(response=>{
       console.log(response);
-      this.designationList = response[0]['designations'];
+      this.designationList = response['designation'];
     })
+    console.log(this.designationList);
   }
 
   addEmployee(){

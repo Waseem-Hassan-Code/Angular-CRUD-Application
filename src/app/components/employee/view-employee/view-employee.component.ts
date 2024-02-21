@@ -26,7 +26,7 @@ export class ViewEmployeeComponent implements OnInit{
   ngOnInit(): void {
     this.employeeOptions = {
       pagingType: 'full_numbers',
-      // retrieve: true
+      retrieve: true
     };
 
     this.getEmployees();
@@ -50,7 +50,7 @@ export class ViewEmployeeComponent implements OnInit{
     this.employeeService.deleteEmployee(id).subscribe(response=>{
       console.log(response);
       this.toastr.error('Employee Deleted');
-      this.getEmployees();
+      this.ngOnInit();
     })
   }
 }

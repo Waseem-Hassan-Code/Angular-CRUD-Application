@@ -41,7 +41,7 @@
                         <mat-form-field>
                             <mat-label>Department</mat-label>
                             <select formControlName="department" (change)="onDepartmentSelect()" matNativeControl required>
-                                <option *ngFor="let department of departmentsList" [value]="department">{{ department }}</option>
+                                <option *ngFor="let department of departmentsList; let i=index" [value]="department._id">{{ department.departmentName }}</option>
                             </select>
                         </mat-form-field>
                     </div>
@@ -49,7 +49,7 @@
                     <div class="col-xl-6 form-field">
                         <mat-form-field>
                             <mat-label>Designation</mat-label>
-                            <select formControlName="designations" matNativeControl required>
+                            <select formControlName="designation" matNativeControl required>
                                 <option *ngFor="let designation of designationList" [value]="designation">{{designation}}</option>
                             </select>
                         </mat-form-field>

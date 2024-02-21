@@ -16,7 +16,7 @@
                 
                 <div class="col-12" *ngIf="showDesignation">
                     <table>
-                        <div formArrayName="designations">
+                        <div formArrayName="designation">
                             <thead>
                                 <tr>
                                     <th width="250px">Add Designations</th>
@@ -24,7 +24,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let val of editDepartmentForm.get('designations')['controls']; let i = index">
+                                <tr *ngFor="let val of editDepartmentForm.get('designation')['controls']; let i = index">
                                     <td>    
                                         <input formControlName="{{i}}" type="text" class="form-control">
                                     </td>

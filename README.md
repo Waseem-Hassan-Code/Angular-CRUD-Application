@@ -8,6 +8,10 @@ Feel free to delve into the detailed documentation, and don't hesitate to provid
 ## Overview
 Welcome to Angular CRUD application! This application demonstrates how to perform basic CRUD operations using Angular for the frontend and JSON-Server for the mock backend.
 
+## Branches
+1. main - Angular CRUD application using JSON server.
+2. mean - Angular CRUD application using MEAN stack.
+
 ## Installation
 To get started with the application, follow these steps:
 
