@@ -6,11 +6,13 @@ Whether you are a seasoned Angular developer looking for a reference implementat
 Feel free to delve into the detailed documentation, and don't hesitate to provide feedback or reach out if you have any questions. Happy coding!
 
 ## Overview
-Welcome to Angular CRUD application! This application demonstrates how to perform basic CRUD operations using Angular for the frontend and JSON-Server for the mock backend.
+Welcome to Angular CRUD application! This application demonstrates how to perform basic CRUD operations MEAN stack (MongoDB, Express.js, Angular, Node.js)
 
 ## Branches
 1. main - Angular CRUD application using JSON server.
 2. mean - Angular CRUD application using MEAN stack.
+
+Following Documentation is for Angular CRUD application using MEAN stack.
 
 ## Installation
 To get started with the application, follow these steps:
@@ -22,7 +24,7 @@ To get started with the application, follow these steps:
 
 ## Running the Application
 1. To run the Angular application: ng serve
-2. To start JSON-Server for the mock backend: json-server --watch db.json
+2. To start the MEAN stack backend follow the instructions in the backend repository's documentation to start the backend server.
 
 ## Project Structure
 Project has the following structure:
